@@ -28,3 +28,43 @@ fixed_tests_False = (
     ( "spam",    "eggs"  )
 )
 """
+def solution(string_a, string_b):
+    return string_a.endswith(string_b)
+
+import unittest
+
+class TestStringEndsWith(unittest.TestCase):
+
+    # Cas de tests qui doivent retourner True
+    fixed_tests_True = (
+        ("samurai", "ai"),
+        ("ninja", "ja"),
+        ("sensei", "i"),
+        ("abc", "abc"),
+        ("abcabc", "bc"),
+        ("fails", "ails"),
+    )
+
+    # Cas de tests qui doivent retourner False
+    fixed_tests_False = (
+        ("sumo", "omo"),
+        ("samurai", "ra"),
+        ("abc", "abcd"),
+        ("ails", "fails"),
+        ("this", "fails"),
+        ("spam", "eggs"),
+    )
+
+    def test_fixed_tests_true(self):
+        for string_a, string_b in self.fixed_tests_True:
+            with self.subTest(string_a=string_a, string_b=string_b):
+                self.assertTrue(solution(string_a, string_b))
+
+    def test_fixed_tests_false(self):
+        for string_a, string_b in self.fixed_tests_False:
+            with self.subTest(string_a=string_a, string_b=string_b):
+                self.assertFalse(solution(string_a, string_b))
+
+if __name__ == '__main__':
+    unittest.main()
+
